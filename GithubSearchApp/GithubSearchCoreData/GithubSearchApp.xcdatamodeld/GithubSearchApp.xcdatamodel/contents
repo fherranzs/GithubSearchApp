@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="GithubSearchApp">
+    <entity name="UserDetails" representedClassName="UserDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="followersURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="followingURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reposURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userAvatar" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="UserDetails" positionX="-54" positionY="-9" width="128" height="120"/>
+    </elements>
+</model>
