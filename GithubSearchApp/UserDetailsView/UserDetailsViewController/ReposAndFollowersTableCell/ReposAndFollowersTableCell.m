@@ -26,7 +26,7 @@
 #pragma mark -TableView Delegate methods-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataArray.count;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -39,7 +39,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    cell.itemLabel.text = [NSString stringWithFormat:@"%@", [_dataArray objectAtIndex:indexPath.row]];
+    cell.itemLabel.text = [NSString stringWithFormat:@"%@", [self.dataArray objectAtIndex:indexPath.row]];
     
     return cell;
 }

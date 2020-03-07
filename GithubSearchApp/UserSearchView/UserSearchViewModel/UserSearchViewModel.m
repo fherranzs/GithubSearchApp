@@ -37,7 +37,7 @@
         usersInformation = [responseDict objectForKey:@"items"];
         if (usersInformation.count > 0)
         {
-            [self->usersFoundInformation removeAllObjects];
+            [self.usersFoundInformation removeAllObjects];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             for (NSDictionary *userInformation in usersInformation)
@@ -45,7 +45,7 @@
                 NSURL *url = [NSURL URLWithString:[userInformation objectForKey:AVATAR]];
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 User *newUser = [[User alloc] initWithUserInformation:userInformation andUserImage:[UIImage imageWithData:data]];
-                [self->usersFoundInformation addObject:newUser];
+                [self.usersFoundInformation addObject:newUser];
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:USER_SEARCH_UPDATE object:nil];
         });

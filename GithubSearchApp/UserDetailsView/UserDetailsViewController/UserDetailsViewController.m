@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _userDetailsViewModel = [[UserDetailsViewModel alloc] initViewModelWithUser:_selectedUser];
+    self.userDetailsViewModel = [[UserDetailsViewModel alloc] initViewModelWithUser:_selectedUser];
     self.reposAndFollowersTableView.delegate = self;
     self.reposAndFollowersTableView.dataSource = self;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(viewUpdateReceived) name:USER_DETAILS_UPDATE object:nil];
@@ -33,24 +33,24 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [_userDetailsViewModel downloadUserAssets];
+    [self.userDetailsViewModel downloadUserAssets];
 }
 
 - (void)viewUpdateReceived
 {
-    _userDetailsLabel.text = _userDetailsViewModel.selectedUser.username;
-    _usernameLabel.text = [NSString stringWithFormat:@"Username: %@", _userDetailsViewModel.selectedUser.username];
-    _followersLabel.text = _userDetailsViewModel.followersLabel;
-    _followingLabel.text = _userDetailsViewModel.followingLabel;
-    _repositoriesLabel.text = _userDetailsViewModel.repositoriesLabel;
-    repositoriesArray = _userDetailsViewModel.repositoriesArray;
-    followersArray = _userDetailsViewModel.followersArray;
+    self.userDetailsLabel.text = self.userDetailsViewModel.selectedUser.username;
+    self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", self.userDetailsViewModel.selectedUser.username];
+    self.followersLabel.text = self.userDetailsViewModel.followersLabel;
+    self.followingLabel.text = self.userDetailsViewModel.followingLabel;
+    self.repositoriesLabel.text = self.userDetailsViewModel.repositoriesLabel;
+    repositoriesArray = self.userDetailsViewModel.repositoriesArray;
+    followersArray = self.userDetailsViewModel.followersArray;
     
-    _userAvatarImageView.image = _userDetailsViewModel.selectedUser.userAvatar;
-    _userAvatarImageView.contentMode = UIViewContentModeScaleAspectFit;
-    CGRect frame = _userAvatarImageView.frame;
-    frame.size = _userAvatarImageView.image.size;
-    _userAvatarImageView.frame = frame;
+    self.userAvatarImageView.image = self.userDetailsViewModel.selectedUser.userAvatar;
+    self.userAvatarImageView.contentMode = UIViewContentModeScaleAspectFit;
+    CGRect frame = self.userAvatarImageView.frame;
+    frame.size = self.userAvatarImageView.image.size;
+    self.userAvatarImageView.frame = frame;    
 }
 
 

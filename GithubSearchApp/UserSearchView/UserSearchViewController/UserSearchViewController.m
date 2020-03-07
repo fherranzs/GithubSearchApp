@@ -21,11 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _userSearchViewModel = [[UserSearchViewModel alloc] initViewModel];
-    usersFound = _userSearchViewModel.usersFoundInformation;
-    _usersTableView.delegate = self;
-    _usersTableView.dataSource = self;
-    _usernameSearchBar.delegate = self;
+    self.userSearchViewModel = [[UserSearchViewModel alloc] initViewModel];
+    usersFound = self.userSearchViewModel.usersFoundInformation;
+    self.usersTableView.delegate = self;
+    self.usersTableView.dataSource = self;
+    self.usernameSearchBar.delegate = self;
     [self.activityIndicator stopAnimating];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(viewUpdateReceived) name:USER_SEARCH_UPDATE object:nil];
 }
@@ -34,8 +34,8 @@
 #pragma mark -View control methods-
 - (void)viewUpdateReceived
 {
-    usersFound = _userSearchViewModel.usersFoundInformation;
-    [self->_usersTableView reloadData];
+    usersFound = self.userSearchViewModel.usersFoundInformation;
+    [self.usersTableView reloadData];
     [self.activityIndicator stopAnimating];
 }
 
@@ -63,7 +63,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Search Clicked");
     [self.activityIndicator startAnimating];
-    [_userSearchViewModel startSearchWithUsername:_usernameSearchBar.text];
+    [self.userSearchViewModel startSearchWithUsername:self.usernameSearchBar.text];
     [searchBar resignFirstResponder];
 }
 
