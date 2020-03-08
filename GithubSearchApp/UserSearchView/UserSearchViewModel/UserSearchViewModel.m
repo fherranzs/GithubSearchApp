@@ -22,7 +22,8 @@
     {
         NSDictionary *noUsersInfo = [[NSDictionary alloc] initWithObjectsAndKeys:NO_USERS, LOGIN, nil];
         User *noUsers = [[User alloc] initWithUserInformation:noUsersInfo andUserImage:[UIImage imageNamed:@"githubImage"]];
-        self.usersFoundInformation = [[NSMutableArray alloc] initWithObjects:noUsers, nil];
+        NSDictionary *newUserDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:noUsers.username, LOGIN, noUsers.userAvatar, @"avatar", noUsers.followersURL, FOLLOWERS, noUsers.followingURL, FOLLOWING, noUsers.reposURL, REPOS, nil];
+        self.usersFoundInformation = [[NSMutableArray alloc] initWithObjects:newUserDictionary, nil];
     }
     return self;
 }
@@ -45,7 +46,8 @@
                 NSURL *url = [NSURL URLWithString:[userInformation objectForKey:AVATAR]];
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 User *newUser = [[User alloc] initWithUserInformation:userInformation andUserImage:[UIImage imageWithData:data]];
-                [self.usersFoundInformation addObject:newUser];
+                NSDictionary *newUserDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:newUser.username, LOGIN, newUser.userAvatar, @"avatar", newUser.followersURL, FOLLOWERS, newUser.followingURL, FOLLOWING, newUser.reposURL, REPOS, nil];
+                [self.usersFoundInformation addObject:newUserDictionary];
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:USER_SEARCH_UPDATE object:nil];
         });

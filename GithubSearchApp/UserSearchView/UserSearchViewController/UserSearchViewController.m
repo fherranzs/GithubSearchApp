@@ -8,7 +8,6 @@
 
 #import "UserSearchViewController.h"
 #import "UserSearchTableCell.h"
-#import "UserModel.h"
 #import "Utils.h"
 
 @interface UserSearchViewController ()
@@ -43,7 +42,7 @@
 {
     UserDetailsViewController *userDetailsViewController = segue.destinationViewController;
     NSIndexPath *path = [self.usersTableView indexPathForSelectedRow];
-    userDetailsViewController.selectedUser = [usersFound objectAtIndex:path.row];
+    userDetailsViewController.selectedUserDictionary = [usersFound objectAtIndex:path.row];
 }
 
 - (IBAction)unwindToRoot:(UIStoryboardSegue *)unwindSegue
@@ -76,7 +75,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = USER_CELL;
-    User *currentUserDetails = [usersFound objectAtIndex:indexPath.row];
+    NSDictionary *currentUserDictionary = [usersFound objectAtIndex:indexPath.row];
     
     UserSearchTableCell *cell = [self.usersTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
@@ -84,8 +83,8 @@
         cell = [[UserSearchTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.usernameLabel.text = currentUserDetails.username;
-    cell.userImageView.image = currentUserDetails.userAvatar;
+    cell.usernameLabel.text = [currentUserDictionary objectForKey:LOGIN];
+    cell.userImageView.image = [currentUserDictionary objectForKey:@"avatar"];
     cell.userImageView.contentMode = UIViewContentModeScaleAspectFit;
 
     CGRect frame = cell.userImageView.frame;

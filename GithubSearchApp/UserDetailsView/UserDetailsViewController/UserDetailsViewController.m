@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userDetailsViewModel = [[UserDetailsViewModel alloc] initViewModelWithUser:_selectedUser];
+    self.userDetailsViewModel = [[UserDetailsViewModel alloc] initViewModelWithUserDictionary:self.selectedUserDictionary];
     self.reposAndFollowersTableView.delegate = self;
     self.reposAndFollowersTableView.dataSource = self;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(viewUpdateReceived) name:USER_DETAILS_UPDATE object:nil];
@@ -38,15 +38,15 @@
 
 - (void)viewUpdateReceived
 {
-    self.userDetailsLabel.text = self.userDetailsViewModel.selectedUser.username;
-    self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", self.userDetailsViewModel.selectedUser.username];
+    self.userDetailsLabel.text = [self.userDetailsViewModel.selectedUserDictionary objectForKey:LOGIN];
+    self.usernameLabel.text = [NSString stringWithFormat:@"Username: %@", [self.userDetailsViewModel.selectedUserDictionary objectForKey:LOGIN]];
     self.followersLabel.text = self.userDetailsViewModel.followersLabel;
     self.followingLabel.text = self.userDetailsViewModel.followingLabel;
     self.repositoriesLabel.text = self.userDetailsViewModel.repositoriesLabel;
     repositoriesArray = self.userDetailsViewModel.repositoriesArray;
     followersArray = self.userDetailsViewModel.followersArray;
     
-    self.userAvatarImageView.image = self.userDetailsViewModel.selectedUser.userAvatar;
+    self.userAvatarImageView.image = [self.userDetailsViewModel.selectedUserDictionary objectForKey:@"avatar"];
     self.userAvatarImageView.contentMode = UIViewContentModeScaleAspectFit;
     CGRect frame = self.userAvatarImageView.frame;
     frame.size = self.userAvatarImageView.image.size;

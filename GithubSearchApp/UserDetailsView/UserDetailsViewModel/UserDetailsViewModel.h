@@ -14,11 +14,12 @@
 @property (strong, nonatomic) NSMutableArray *repositoriesArray;
 @property (strong, nonatomic) NSMutableArray *followersArray;
 @property (strong, nonatomic) User *selectedUser;
+@property (strong, nonatomic) NSDictionary *selectedUserDictionary;
 @property (strong, nonatomic) NSString *repositoriesLabel;
 @property (strong, nonatomic) NSString *followersLabel;
 @property (strong, nonatomic) NSString *followingLabel;
 
-- (instancetype)initViewModelWithUser:(User *)user;
+- (instancetype)initViewModelWithUserDictionary:(NSDictionary *)userDictionary;
 
 - (void)downloadUserAssets;
 

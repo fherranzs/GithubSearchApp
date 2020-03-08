@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserModel.h"
 #import "UserDetailsViewModel.h"
 
 @interface UserDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -25,6 +24,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *reposAndFollowersTableView;
 
 @property (strong, nonatomic) UserDetailsViewModel *userDetailsViewModel;
-@property (strong, nonatomic) User *selectedUser;
+@property (strong, nonatomic) NSDictionary *selectedUserDictionary;
 
 @end

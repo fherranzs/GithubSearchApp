@@ -12,6 +12,19 @@
 
 @implementation UserDetailsViewModel
 
+- (instancetype)initViewModelWithUserDictionary:(NSDictionary *)userDictionary
+{
+    self = [super init];
+    if (self)
+    {
+        self.selectedUserDictionary = userDictionary;
+        User *user = [[User alloc] initWithUserInformation:userDictionary andUserImage:[userDictionary objectForKey:@"avatar"]];
+        self.selectedUser = user;
+        [self saveUserDetails:user];
+    }
+    return self;
+}
+
 - (instancetype)initViewModelWithUser:(User *)user
 {
     self = [super init];
